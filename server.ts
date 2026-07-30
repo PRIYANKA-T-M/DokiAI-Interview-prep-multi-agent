@@ -1,4 +1,6 @@
+import 'dotenv/config';
 import express from 'express';
+import 'dotenv/config';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import {
@@ -11,7 +13,7 @@ import {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT || 3001);
 
   app.use(express.json({ limit: '10mb' }));
 
@@ -161,8 +163,8 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Dōki AI Server running on http://0.0.0.0:${PORT}`);
+  app.listen(PORT, 'localhost', () => {
+    console.log(`Dōki AI Server running on http://localhost:${PORT}`);
   });
 }
 
